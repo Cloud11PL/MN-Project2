@@ -1,4 +1,3 @@
-
 package sample;
 
 import org.apache.commons.math3.exception.DimensionMismatchException;
@@ -46,11 +45,10 @@ public class BigSquidNeuronODE implements FirstOrderDifferentialEquations {
         double bh = 1 / (Math.exp((30 - x[3]) / 10) + 1);
 
 
-        dxdt[0]= am *(1-x[0])- bm *x[0]; //16a
-        dxdt[1]= an *(1-x[1])- bn *x[1]; //16b
-        dxdt[2]= ah *(1-x[2])- bh *x[2]; //16c
-        dxdt[3]=(-1*((gNa*Math.pow(x[0],3.0)*x[2]*(x[3]-ENa))+((gK*Math.pow(x[1],4.0)*(x[3]-EK))+(gL*(x[3]-EL))))+I)/C; //20
-
+        dxdt[0] = am * (1 - x[0]) - bm * x[0]; //16a
+        dxdt[1] = an * (1 - x[1]) - bn * x[1]; //16b
+        dxdt[2] = ah * (1 - x[2]) - bh * x[2]; //16c
+        dxdt[3] = (-1 * ((gNa * Math.pow(x[0], 3.0) * x[2] * (x[3] - ENa)) + ((gK * Math.pow(x[1], 4.0) * (x[3] - EK)) + (gL * (x[3] - EL)))) + I) / C; //20
 
 
     }
