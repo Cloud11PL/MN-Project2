@@ -1,0 +1,13 @@
+.button {
+    -fx-background-color: rgba(0,132,1,0.3);
+    -fx-highlight-fill: white;
+    -fx-text-fill: white;
+    -fx-highlight-fill: white;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+.button:pressed {
+    -fx-background-color: rgba(0,132,1,0.7);
+    -fx-highlight-fill: white;
+    -fx-highlight-text-fill: white;
+}

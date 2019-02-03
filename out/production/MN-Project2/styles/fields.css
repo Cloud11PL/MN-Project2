@@ -1,0 +1,9 @@
+#field{
+    -fx-background-color: rgba(17,69,87,0.5);
+}
+
+#field:hover {
+    -fx-transition-delay: 2s;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
