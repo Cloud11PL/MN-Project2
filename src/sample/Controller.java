@@ -3,6 +3,7 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -32,7 +33,7 @@ public class Controller {
     private LineChart<Number, Number> utChart;
 
     @FXML
-    private LineChart<Number, Number> secondChart;
+    private ScatterChart<Number, Number> secondChart;
 
     @FXML
     private Text freq;
@@ -70,16 +71,8 @@ public class Controller {
     @FXML
     void runPressed(ActionEvent event) {
         double I = 0;
-        double C = Double.parseDouble(paramFour.getText());
-        double eNa = Double.parseDouble(paramOne.getText());
-        double eK = Double.parseDouble(paramTwo.getText());
-        double eL = Double.parseDouble(paramThree.getText());
-        double gNa = 120;
-        double gK = 36;
-        double gL = 0.3;
-        double u =0;
 
-        FirstOrderDifferentialEquations ode = new BigSquidNeuronODE(C,eNa,eK,eL,gNa,gK,gL,I);
+        FirstOrderDifferentialEquations ode = new BigSquidNeuronODE(c,eNa,eK,eL,gNa,gK,gL,I);
         BigSquidNeuronPath path = new BigSquidNeuronPath(eNa,eK,eL,gNa,gK,gL);
         FirstOrderIntegrator integrator1 = new EulerIntegrator(0.01);
         integrator1.addStepHandler(path);
@@ -115,11 +108,10 @@ public class Controller {
             h0 = path.gethValues().get(path.gethValues().size() - 1);
             u0 = path.getuValues().get(path.getuValues().size() - 1);
 
-            ode = new BigSquidNeuronODE(C, eNa, eK, eL, gNa, gK, gL, I);
+            ode = new BigSquidNeuronODE(c, eNa, eK, eL, gNa, gK, gL, I);
             yStart = new double[]{m0, n0, h0, u0};
             System.out.println(Arrays.toString(yStart));
             yStop = new double[]{0, 1, 0, 1};
-
 
             integrator1.integrate(ode, T15, yStart, te, yStop);
         }
@@ -129,15 +121,18 @@ public class Controller {
 
         XYChart.Series<Number, Number> uSeries = path.getuSeries();
         XYChart.Series<Number, Number> ISeries = new XYChart.Series();
+
         XYChart.Series<Number, Number> INaSeries = path.getINaSeries();
         XYChart.Series<Number, Number> IKSeries = path.getIKSeries();
         XYChart.Series<Number, Number> ILSeries = path.getILSeries();
+
         XYChart.Series<Number, Number> mSeries = path.getmSeries();
         XYChart.Series<Number, Number> nSeries = path.getnSeries();
         XYChart.Series<Number, Number> hSeries = path.gethSeries();
-        XYChart.Series<Number, Number> huSeries = path.gethSeries();
-        XYChart.Series<Number, Number> nuSeries = path.gethSeries();
-        XYChart.Series<Number, Number> muSeries = path.gethSeries();
+
+        XYChart.Series<Number, Number> huSeries = path.getHuSeriesSeries();
+        XYChart.Series<Number, Number> nuSeries = path.getNuSeriesuSeriesSeries();
+        XYChart.Series<Number, Number> muSeries = path.getMuSeriesuSeriesSeries();
 
         for (int i = 0; i < uValues.size(); i++) {
             if (time.get(i) > 7.5) ISeries.getData().add(new XYChart.Data<>(time.get(i), I));

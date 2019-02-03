@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class BigSquidNeuronPath implements StepHandler {
 
+
     private ArrayList<Double> mValues = new ArrayList<>();
     private ArrayList<Double> nValues = new ArrayList<>();
     private ArrayList<Double> hValues = new ArrayList<>();
@@ -118,7 +119,6 @@ public class BigSquidNeuronPath implements StepHandler {
     public void handleStep(StepInterpolator stepInterpolator, boolean b) throws MaxCountExceededException {
 
         double t = stepInterpolator.getCurrentTime();
-
         double[] x = stepInterpolator.getInterpolatedState();
         time = t;
 
@@ -127,12 +127,15 @@ public class BigSquidNeuronPath implements StepHandler {
         double iL = gL * (x[3] - EL);
 
         uSeries.getData().add(new XYChart.Data<>(time, x[3]));
+
         INaSeries.getData().add(new XYChart.Data<>(time, iNa));
         IKSeries.getData().add(new XYChart.Data<>(time, iK));
         ILSeries.getData().add(new XYChart.Data<>(time, iL));
+
         mSeries.getData().add(new XYChart.Data<>(time, x[0]));
         nSeries.getData().add(new XYChart.Data<>(time, x[1]));
         hSeries.getData().add(new XYChart.Data<>(time, x[2]));
+
         huSeries.getData().add(new XYChart.Data<>(x[3], x[2]));
         nuSeries.getData().add(new XYChart.Data<>(x[3], x[1]));
         muSeries.getData().add(new XYChart.Data<>(x[3], x[0]));
