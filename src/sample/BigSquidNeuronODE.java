@@ -5,7 +5,7 @@ import org.apache.commons.math3.exception.DimensionMismatchException;
 import org.apache.commons.math3.exception.MaxCountExceededException;
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 
-public class ODE implements FirstOrderDifferentialEquations {
+public class BigSquidNeuronODE implements FirstOrderDifferentialEquations {
 
     private double C;
     private double ENa;
@@ -16,7 +16,7 @@ public class ODE implements FirstOrderDifferentialEquations {
     private double gL;
     private double I;
 
-    public ODE(double c, double ENa, double EK, double EL, double gNa, double gK, double gL, double i) {
+    public BigSquidNeuronODE(double c, double ENa, double EK, double EL, double gNa, double gK, double gL, double i) {
         C = c;
         this.ENa = ENa;
         this.EK = EK;

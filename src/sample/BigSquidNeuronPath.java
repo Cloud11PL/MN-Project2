@@ -8,7 +8,7 @@ import org.apache.commons.math3.ode.sampling.StepInterpolator;
 import java.util.ArrayList;
 
 
-public class Path implements StepHandler {
+public class BigSquidNeuronPath implements StepHandler {
 
     private ArrayList<Double> mValues = new ArrayList<>();
     private ArrayList<Double> nValues = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Path implements StepHandler {
     private double gK;
     private double gL;
 
-    public Path(double ENa, double EK, double EL, double gNa, double gK, double gL) {
+    public BigSquidNeuronPath(double ENa, double EK, double EL, double gNa, double gK, double gL) {
         this.ENa = ENa;
         this.EK = EK;
         this.EL = EL;
