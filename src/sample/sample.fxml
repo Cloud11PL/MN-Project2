@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
@@ -34,7 +33,7 @@
                <children>
                   <HBox prefHeight="305.0" prefWidth="700.0">
                      <children>
-                        <LineChart id="chart1" legendVisible="false" maxHeight="281.0" prefHeight="281.0" prefWidth="340.0" stylesheets="@assets/styles/chart.css">
+                        <LineChart id="chart1" fx:id="utChart" legendVisible="false" maxHeight="281.0" prefHeight="281.0" prefWidth="340.0" stylesheets="@assets/styles/chart.css">
                           <xAxis>
                             <NumberAxis side="BOTTOM" />
                           </xAxis>
