@@ -38,15 +38,23 @@ public class Controller {
     private double gL;
     private boolean CE = true;
 
-    XYChart.Series INaSeries = new XYChart.Series();
-    XYChart.Series<Number, Number> IKSeries;
-    XYChart.Series<Number, Number> ILSeries;
-    XYChart.Series<Number, Number> mSeries;
-    XYChart.Series<Number, Number> nSeries;
-    XYChart.Series<Number, Number> hSeries;
+    private XYChart.Series INaSeries = new XYChart.Series();
+    private XYChart.Series<Number, Number> IKSeries = new XYChart.Series<>();
+    private XYChart.Series<Number, Number> ILSeries = new XYChart.Series<>();
+    private XYChart.Series mSeries = new XYChart.Series();
+    private XYChart.Series<Number, Number> nSeries = new XYChart.Series<>();
+    private XYChart.Series<Number, Number> hSeries = new XYChart.Series<Number, Number>();
+    private XYChart.Series<Number, Number> huSeries = new XYChart.Series<Number, Number>();
+    private XYChart.Series nuSeries = new XYChart.Series();
+    private XYChart.Series<Number, Number> muSeries = new XYChart.Series<>();
+    private XYChart.Series uSeries = new XYChart.Series();
+    private XYChart.Series ISeries = new XYChart.Series();
 
     @FXML
     private Button buttonVar;
+
+    @FXML
+    private Button buttonRun;
 
     @FXML
     private Button buttonCurr;
@@ -92,13 +100,13 @@ public class Controller {
 
     @FXML
     void runPressed(ActionEvent event) {
-
+        clearSeries();
         ExecutorService executor = Executors.newFixedThreadPool(5);
         executor.submit(() -> d.run());
     }
     Thread d = new Thread(){
         public void run() {
-
+            buttonRun.setDisable(true);
             System.out.println(Thread.currentThread().getName());
 
             double I = 0;
@@ -151,8 +159,7 @@ public class Controller {
             time = path.getTimes();
             uValues = path.getuValues();
 
-            XYChart.Series<Number, Number> uSeries = path.getuSeries();
-            XYChart.Series<Number, Number> ISeries = new XYChart.Series();
+            uSeries = path.getuSeries();
 
             //CurrPressed
             INaSeries = path.getINaSeries();
@@ -170,9 +177,9 @@ public class Controller {
             hSeries = path.gethSeries();
             hSeries.setName("H");
 
-            XYChart.Series<Number, Number> huSeries = path.getHuSeriesSeries();
-            XYChart.Series<Number, Number> nuSeries = path.getNuSeriesuSeriesSeries();
-            XYChart.Series<Number, Number> muSeries = path.getMuSeriesuSeriesSeries();
+            huSeries = path.getHuSeriesSeries();
+            nuSeries = path.getNuSeriesuSeriesSeries();
+            muSeries = path.getMuSeriesuSeriesSeries();
 
             for (int i = 0; i < uValues.size(); i++) {
                 if (time.get(i) > 7.5) ISeries.getData().add(new XYChart.Data<>(time.get(i), I));
@@ -192,6 +199,7 @@ public class Controller {
             max.setText(Double.toString(round(BDSM.doMaths().get("max"),2)));
             buttonCurr.setDisable(false);
             buttonVar.setDisable(false);
+            buttonRun.setDisable(false);
         }
     };
 
@@ -201,6 +209,20 @@ public class Controller {
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
+    }
+
+    void clearSeries(){
+        INaSeries.getData().clear();
+        IKSeries.getData().clear();
+        ILSeries.getData().clear();
+        mSeries.getData().clear();
+        nSeries.getData().clear();
+        hSeries.getData().clear();
+        huSeries.getData().clear();
+        nuSeries.getData().clear();
+        muSeries.getData().clear();
+        uSeries.getData().clear();
+        ISeries.getData().clear();
     }
 
 

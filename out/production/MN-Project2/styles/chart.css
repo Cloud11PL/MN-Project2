@@ -9,6 +9,12 @@
     -fx-legend-visible: false;
 }
 
+.chart-symbol {
+    -fx-background-radius: 2px;
+    -fx-background-insets: 0, 2;
+    -fx-padding: 5px;
+}
+
 .chart-content {
     -fx-padding: 10px;
 }
