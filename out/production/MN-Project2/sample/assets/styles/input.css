@@ -1,0 +1,13 @@
+.text-field {
+    -fx-background-color: rgba(18,26,65,0.3);
+    -fx-highlight-fill: white;
+    -fx-text-fill: white;
+    -fx-highlight-fill: white;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+.text-field:focused {
+    -fx-background-color: rgba(18,26,65,0.7);
+    -fx-highlight-fill: white;
+    -fx-highlight-text-fill: white;
+}
