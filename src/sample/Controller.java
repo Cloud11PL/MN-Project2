@@ -41,6 +41,9 @@ public class Controller {
     XYChart.Series INaSeries = new XYChart.Series();
     XYChart.Series<Number, Number> IKSeries;
     XYChart.Series<Number, Number> ILSeries;
+    XYChart.Series<Number, Number> mSeries;
+    XYChart.Series<Number, Number> nSeries;
+    XYChart.Series<Number, Number> hSeries;
 
     @FXML
     private Button buttonVar;
@@ -160,9 +163,12 @@ public class Controller {
             ILSeries.setName("I L");
 
             //VarPressed
-            XYChart.Series<Number, Number> mSeries = path.getmSeries();
-            XYChart.Series<Number, Number> nSeries = path.getnSeries();
-            XYChart.Series<Number, Number> hSeries = path.gethSeries();
+            mSeries = path.getmSeries();
+            mSeries.setName("M");
+            nSeries = path.getnSeries();
+            nSeries.setName("N");
+            hSeries = path.gethSeries();
+            hSeries.setName("H");
 
             XYChart.Series<Number, Number> huSeries = path.getHuSeriesSeries();
             XYChart.Series<Number, Number> nuSeries = path.getNuSeriesuSeriesSeries();
@@ -253,7 +259,21 @@ public class Controller {
 
     @FXML
     void varPressed(ActionEvent event) {
+        try {
+            FXMLLoader loader2 = new FXMLLoader(getClass().getClassLoader().getResource("varGraphWindow.fxml"));
+            Parent root3 = loader2.load();
+            VarGraphWindow varGraphWindow = loader2.getController();
+            Platform.runLater(() -> {
+                varGraphWindow.getVarGraph().getData().addAll(mSeries,hSeries,nSeries);
+            });
+            Stage stage3 = new Stage();
+            stage3.setTitle("Landing Graph");
+            stage3.setScene(new Scene(root3, 600, 500));
+            stage3.show();
+        } catch (IOException e) {
+            e.printStackTrace();
 
+        }
     }
 
     @FXML
@@ -261,9 +281,9 @@ public class Controller {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("currGraphWindow.fxml"));
             Parent root2 = loader.load();
-            CurrGraphWindow measurement = loader.getController();
+            CurrGraphWindow currGraphWindow = loader.getController();
             Platform.runLater(() -> {
-                measurement.getCurrGraph().getData().addAll(INaSeries,IKSeries,ILSeries);
+                currGraphWindow.getCurrGraph().getData().addAll(INaSeries,IKSeries,ILSeries);
             });
             Stage stage2 = new Stage();
             stage2.setTitle("Landing Graph");
