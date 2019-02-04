@@ -3,16 +3,22 @@ package sample;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 import org.apache.commons.math3.ode.FirstOrderIntegrator;
 import org.apache.commons.math3.ode.nonstiff.EulerIntegrator;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
@@ -31,6 +37,16 @@ public class Controller {
     private double gK;
     private double gL;
     private boolean CE = true;
+
+    XYChart.Series INaSeries = new XYChart.Series();
+    XYChart.Series<Number, Number> IKSeries;
+    XYChart.Series<Number, Number> ILSeries;
+
+    @FXML
+    private Button buttonVar;
+
+    @FXML
+    private Button buttonCurr;
 
     @FXML
     private LineChart<Number, Number> utChart;
@@ -88,6 +104,7 @@ public class Controller {
             BigSquidNeuronPath path = new BigSquidNeuronPath(eNa,eK,eL,gNa,gK,gL);
             FirstOrderIntegrator integrator1 = new EulerIntegrator(0.01);
             integrator1.addStepHandler(path);
+
             double Tk = 0.001;
             double te = 50;
             double T15 = (0.15 * te);
@@ -134,10 +151,15 @@ public class Controller {
             XYChart.Series<Number, Number> uSeries = path.getuSeries();
             XYChart.Series<Number, Number> ISeries = new XYChart.Series();
 
-            XYChart.Series<Number, Number> INaSeries = path.getINaSeries();
-            XYChart.Series<Number, Number> IKSeries = path.getIKSeries();
-            XYChart.Series<Number, Number> ILSeries = path.getILSeries();
+            //CurrPressed
+            INaSeries = path.getINaSeries();
+            INaSeries.setName("I Na");
+            IKSeries = path.getIKSeries();
+            IKSeries.setName("I K");
+            ILSeries = path.getILSeries();
+            ILSeries.setName("I L");
 
+            //VarPressed
             XYChart.Series<Number, Number> mSeries = path.getmSeries();
             XYChart.Series<Number, Number> nSeries = path.getnSeries();
             XYChart.Series<Number, Number> hSeries = path.gethSeries();
@@ -149,8 +171,10 @@ public class Controller {
             for (int i = 0; i < uValues.size(); i++) {
                 if (time.get(i) > 7.5) ISeries.getData().add(new XYChart.Data<>(time.get(i), I));
                 else ISeries.getData().add(new XYChart.Data<>(time.get(i), 0));
-
             }
+
+
+
             Platform.runLater(() -> {
                 utChart.getData().add(uSeries);
                 secondChart.setAnimated(false);
@@ -160,6 +184,8 @@ public class Controller {
             BigSquidNeuronMathClass BDSM = new BigSquidNeuronMathClass(uValues,time);
             freq.setText(Double.toString(round(BDSM.doMaths().get("frequency"),2)));
             max.setText(Double.toString(round(BDSM.doMaths().get("max"),2)));
+            buttonCurr.setDisable(false);
+            buttonVar.setDisable(false);
         }
     };
 
@@ -202,6 +228,8 @@ public class Controller {
 
     @FXML
     void initialize(){
+        buttonCurr.setDisable(true);
+        buttonVar.setDisable(true);
         combobox.getItems().removeAll(combobox.getItems());
         combobox.getItems().addAll("C, E...", "g Na, g K...");
         combobox.getSelectionModel().select("C, E...");
@@ -220,6 +248,31 @@ public class Controller {
         paramFour.setText(Double.toString(c));
 
         assign();
+    }
+
+
+    @FXML
+    void varPressed(ActionEvent event) {
+
+    }
+
+    @FXML
+    void currPressed(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("currGraphWindow.fxml"));
+            Parent root2 = loader.load();
+            CurrGraphWindow measurement = loader.getController();
+            Platform.runLater(() -> {
+                measurement.getCurrGraph().getData().addAll(INaSeries,IKSeries,ILSeries);
+            });
+            Stage stage2 = new Stage();
+            stage2.setTitle("Landing Graph");
+            stage2.setScene(new Scene(root2, 600, 500));
+            stage2.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
     }
 
     public void assign(){

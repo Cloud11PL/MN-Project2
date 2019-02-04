@@ -118,7 +118,7 @@
                               </Button>
                               <HBox prefHeight="68.0" prefWidth="370.0">
                                  <children>
-                                    <Button id="button1" mnemonicParsing="false" onAction="#runPressed" prefHeight="41.0" prefWidth="400.0" stylesheets="@assets/styles/action-btns.css">
+                                    <Button id="button1" fx:id="buttonVar" mnemonicParsing="false" onAction="#varPressed" prefHeight="41.0" prefWidth="400.0" stylesheets="@assets/styles/action-btns.css">
                                        <font>
                                           <Font size="19.0" />
                                        </font>
@@ -133,7 +133,7 @@
                                           <Insets right="20.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button id="button2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#runPressed" prefHeight="41.0" prefWidth="400.0" stylesheets="@assets/styles/action-btns.css">
+                                    <Button id="button2" fx:id="buttonCurr" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#currPressed" prefHeight="41.0" prefWidth="400.0" stylesheets="@assets/styles/action-btns.css">
                                        <font>
                                           <Font size="19.0" />
                                        </font>
