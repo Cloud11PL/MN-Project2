@@ -98,6 +98,11 @@ public class Controller {
     @FXML
     private TextField paramFour;
 
+    /**
+     * Method, attached to an onClick event, that takes set parameters and executes functions that calculate specific courses of parameters.
+     * This method is also using `Platform.runLater` to display changes on the JavaFX thread.
+     * @param event
+     */
     @FXML
     void runPressed(ActionEvent event) {
         clearSeries();
@@ -203,7 +208,13 @@ public class Controller {
         }
     };
 
-    public static double round(double value, int places) {
+    /**
+     * Method that rounds given value to specific places after comma.
+     * @param value to round
+     * @param places after comma
+     * @return
+     */
+    private static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
         long factor = (long) Math.pow(10, places);
         value = value * factor;
@@ -211,7 +222,10 @@ public class Controller {
         return (double) tmp / factor;
     }
 
-    void clearSeries(){
+    /**
+     * Method that clears all series.
+     */
+    private void clearSeries(){
         INaSeries.getData().clear();
         IKSeries.getData().clear();
         ILSeries.getData().clear();
@@ -225,7 +239,10 @@ public class Controller {
         ISeries.getData().clear();
     }
 
-
+    /**
+     * `typePicked` changes the input fields according to the user changes in combobox.
+     * @param event
+     */
     @FXML
     void typePicked(ActionEvent event) {
         System.out.println(combobox.getValue());
@@ -254,6 +271,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Sets initial values.
+     */
     @FXML
     void initialize(){
         buttonCurr.setDisable(true);
@@ -278,7 +298,10 @@ public class Controller {
         assign();
     }
 
-
+    /**
+     * `varPressed` opens a new window with a graph containing m, h and n series.
+     * @param event
+     */
     @FXML
     void varPressed(ActionEvent event) {
         try {
@@ -298,6 +321,10 @@ public class Controller {
         }
     }
 
+    /**
+     * `currPressed` opens a new window with a graph containing INa, Ik and IL series.
+     * @param event
+     */
     @FXML
     void currPressed(ActionEvent event) {
         try {
@@ -317,6 +344,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Assigns parameters based on user input.
+     */
     public void assign(){
         try {
             if (CE) {
@@ -328,9 +358,6 @@ public class Controller {
                 paramThree.setText(Double.toString(eK));
                 c = Double.parseDouble(paramFour.getText());
                 paramFour.setText(Double.toString(c));
-
-                System.out.println("eNa = " + eNa + " eL " + eL + " eK" + eK + " C " + c);
-                System.out.println("gNa = " + gNa + " gK " + gK + " eL " + eL);
             } else {
                 gNa = Double.parseDouble(paramOne.getText());
                 paramOne.setText(Double.toString(gNa));
@@ -338,8 +365,6 @@ public class Controller {
                 paramTwo.setText(Double.toString(gK));
                 gL = Double.parseDouble(paramThree.getText());
                 paramThree.setText(Double.toString(gL));
-                System.out.println("eNa = " + eNa + " eL " + eL + " eK" + eK + " C " + c);
-                System.out.println("gNa = " + gNa + " gK " + gK + " eL" + eL);
             }
         } catch(Exception e) {
             System.out.println(e);

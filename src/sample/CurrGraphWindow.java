@@ -7,14 +7,13 @@ public class CurrGraphWindow {
     @FXML
     private ScatterChart<Number, Number> currGraph;
 
-    public ScatterChart<Number, Number> getCurrGraph() {
+    ScatterChart<Number, Number> getCurrGraph() {
         return currGraph;
     }
 
-    public void setCurrGraph(ScatterChart<Number, Number> currGraph) {
-        this.currGraph = currGraph;
-    }
-
+    /**
+     * Sets graph labels.
+     */
     @FXML
     void initialize() {
         currGraph.getXAxis().setLabel("Time [s]");

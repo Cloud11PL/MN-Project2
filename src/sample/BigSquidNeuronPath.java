@@ -24,16 +24,16 @@ public class BigSquidNeuronPath implements StepHandler {
     private ArrayList<Double> nu=new ArrayList<>();
     private double time = 0;
 
-    private XYChart.Series<Number, Number> uSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> INaSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> IKSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> ILSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> mSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> nSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> hSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> huSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> muSeries = new XYChart.Series();
-    private XYChart.Series<Number, Number> nuSeries = new XYChart.Series();
+    private XYChart.Series uSeries = new XYChart.Series();
+    private XYChart.Series INaSeries = new XYChart.Series();
+    private XYChart.Series IKSeries = new XYChart.Series();
+    private XYChart.Series ILSeries = new XYChart.Series();
+    private XYChart.Series mSeries = new XYChart.Series();
+    private XYChart.Series nSeries = new XYChart.Series();
+    private XYChart.Series hSeries = new XYChart.Series();
+    private XYChart.Series huSeries = new XYChart.Series();
+    private XYChart.Series muSeries = new XYChart.Series();
+    private XYChart.Series nuSeries = new XYChart.Series();
 
     private double ENa;
     private double EK;
@@ -60,56 +60,56 @@ public class BigSquidNeuronPath implements StepHandler {
     public ArrayList<Double> getIls() {
         return Ils;
     }
-    public ArrayList<Double> getmValues() {
+    ArrayList<Double> getmValues() {
         return mValues;
     }
-    public ArrayList<Double> getnValues() {
+    ArrayList<Double> getnValues() {
         return nValues;
     }
-    public ArrayList<Double> gethValues() {
+    ArrayList<Double> gethValues() {
         return hValues;
     }
-    public ArrayList<Double> getuValues() {
+    ArrayList<Double> getuValues() {
         return uValues;
     }
-    public ArrayList<Double> getTimes() {
+    ArrayList<Double> getTimes() {
         return times;
     }
-    public double getTime() {
+    double getTime() {
         return time;
     }
 
     @Override
     public void init(double v, double[] doubles, double v1){}
 
-    public XYChart.Series<Number, Number> getuSeries() {
+    XYChart.Series<Number, Number> getuSeries() {
         return uSeries;
     }
-    public XYChart.Series<Number, Number> getINaSeries() {
+    XYChart.Series<Number, Number> getINaSeries() {
         return INaSeries;
     }
-    public XYChart.Series<Number, Number> getIKSeries() {
+    XYChart.Series<Number, Number> getIKSeries() {
         return IKSeries;
     }
-    public XYChart.Series<Number, Number> getILSeries() {
+    XYChart.Series<Number, Number> getILSeries() {
         return ILSeries;
     }
-    public XYChart.Series<Number, Number> getmSeries() {
+    XYChart.Series<Number, Number> getmSeries() {
         return mSeries;
     }
-    public XYChart.Series<Number, Number> getnSeries() {
+    XYChart.Series<Number, Number> getnSeries() {
         return nSeries;
     }
-    public XYChart.Series<Number, Number> gethSeries() {
+    XYChart.Series<Number, Number> gethSeries() {
         return hSeries;
     }
-    public XYChart.Series<Number, Number> getHuSeriesSeries() {
+    XYChart.Series<Number, Number> getHuSeriesSeries() {
         return huSeries;
     }
-    public XYChart.Series<Number, Number> getNuSeriesuSeriesSeries() {
+    XYChart.Series<Number, Number> getNuSeriesuSeriesSeries() {
         return nuSeries;
     }
-    public XYChart.Series<Number, Number> getMuSeriesuSeriesSeries() {
+    XYChart.Series<Number, Number> getMuSeriesuSeriesSeries() {
         return muSeries;
     }
 

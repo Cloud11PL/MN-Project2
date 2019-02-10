@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.layout.Pane?>
@@ -13,7 +12,7 @@
     <children>
         <VBox prefHeight="500.0" prefWidth="600.0">
             <children>
-                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="??? Graph">
+                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="H, M, N Graph">
                     <VBox.margin>
                         <Insets left="20.0" right="20.0" top="20.0" />
                     </VBox.margin>

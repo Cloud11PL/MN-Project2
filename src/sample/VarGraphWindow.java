@@ -12,10 +12,9 @@ public class VarGraphWindow {
         return varGraph;
     }
 
-    public void setVarGraph(ScatterChart<Number, Number> currGraph) {
-        this.varGraph = currGraph;
-    }
-
+    /**
+     * Sets labels.
+     */
     @FXML
     void initialize() {
         varGraph.getXAxis().setLabel("j.u.");
